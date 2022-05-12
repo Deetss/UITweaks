@@ -1,17 +1,17 @@
-local RunThisFrame = CreateFrame("Frame")
+local UITweaksFrame = CreateFrame("Frame")
 
-RunThisFrame.defaults = {
+UITweaksFrame.defaults = {
   scripts = {
 	  "C_NamePlate.SetNamePlateFriendlySize(60, 30)",
 	  "C_NamePlate.SetNamePlateFriendlySize(60, 30)",
 	},
 }
 
-function RunThisFrame:InitializeOptions()
+function UITweaksFrame:InitializeOptions()
 	self.panel = CreateFrame( "Frame");
 	-- Register in the Interface Addon Options GUI
 	-- Set the name for the Category for the Options Panel
-	self.panel.name = "RunThis";
+	self.panel.name = "UITweaks";
 	local offy = -20
 	local offx = 20
 	local oldEB = {}
@@ -40,16 +40,16 @@ function RunThisFrame:InitializeOptions()
 	InterfaceOptions_AddCategory(self.panel);
 end
 
-function RunThisFrame:PLAYER_LOGIN(event)
+function UITweaksFrame:PLAYER_LOGIN(event)
 	-- -- put things here to be loaded
   	-- -- C_NamePlate.SetNamePlateFriendlySize(60, 30)
-	RunThisFrame:toggleSmallFriendlyNameplates()
+	UITweaksFrame:toggleSmallFriendlyNameplates()
 end
 
-function RunThisFrame:ADDON_LOADED(event, RunThis, ...)
-	if RunThis == "RunThis" then
-		RunThisDB = CopyTable(self.defaults) or RunThisDB
-		self.db = RunThisDB
+function UITweaksFrame:ADDON_LOADED(event, UITweaks, ...)
+	if UITweaks == "UITweaks" then
+		UITweaksDB = CopyTable(self.defaults) or UITweaksDB
+		self.db = UITweaksDB
 		for k, v in pairs(self.defaults) do -- copy the defaults table and possibly any new options
 			if self.db[k] == nil then -- avoids resetting any false values
 				self.db[k] = v
@@ -65,29 +65,29 @@ function RunThisFrame:ADDON_LOADED(event, RunThis, ...)
 	end
 end
 
-function RunThisFrame:toggleSmallFriendlyNameplates()
+function UITweaksFrame:toggleSmallFriendlyNameplates()
 	C_NamePlate.SetNamePlateFriendlySize(60, 30)
 end
 
-function RunThisFrame:OnEvent(event, ...)
+function UITweaksFrame:OnEvent(event, ...)
 	self[event](self, event, ...)
 end
 
-RunThisFrame:RegisterEvent("ADDON_LOADED")
-RunThisFrame:RegisterEvent("PLAYER_LOGIN")
-RunThisFrame:SetScript("OnEvent", RunThisFrame.OnEvent)
+UITweaksFrame:RegisterEvent("ADDON_LOADED")
+UITweaksFrame:RegisterEvent("PLAYER_LOGIN")
+UITweaksFrame:SetScript("OnEvent", UITweaksFrame.OnEvent)
 
 
 -- Register in the Interface Addon Options GUI
 -- Set the name for the Category for the Options Panel
--- RunThis.panel.name = "RunThis";
+-- UITweaks.panel.name = "UITweaks";
 -- Add the panel to the Interface Options
--- InterfaceOptions_AddCategory(RunThis.panel);
+-- InterfaceOptions_AddCategory(UITweaks.panel);
 
 -- Make a child panel
--- RunThis.childpanel = CreateFrame( "Frame", "MyAddonChild", RunThis.panel);
--- RunThis.childpanel.name = "MyChild";
+-- UITweaks.childpanel = CreateFrame( "Frame", "MyAddonChild", UITweaks.panel);
+-- UITweaks.childpanel.name = "MyChild";
 -- Specify childness of this panel (this puts it under the little red [+], instead of giving it a normal AddOn category)
--- RunThis.childpanel.parent = RunThis.panel.name;
+-- UITweaks.childpanel.parent = UITweaks.panel.name;
 -- Add the child to the Interface Options
--- InterfaceOptions_AddCategory(RunThis.childpanel);
+-- InterfaceOptions_AddCategory(UITweaks.childpanel);
