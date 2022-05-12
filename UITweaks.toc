@@ -1,0 +1,6 @@
+## Interface: 90200
+## Title: UI Tweaks
+## Notes: Tweaks to the default WoW Interface. 
+## Author: Deetzz
+##SavedVariables: UITweaks
+UITweaks.lua
